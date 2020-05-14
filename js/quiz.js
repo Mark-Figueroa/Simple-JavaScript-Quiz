@@ -16,6 +16,9 @@ let answer;
 let question;
 let statement;
 
+let correctResponseList = [];
+let incorrectResponseList = [];
+
 //Counters
 let countCorrect = 0;
 let countIncorrect = 0;
@@ -23,8 +26,8 @@ let countIncorrect = 0;
 
 //Write HTML
 let HTML = document.getElementById(`output`).innerHTML;
-let correctHTML = `<h2>You got these questions right:</h2> <ol>`;
-let incorrectHTML = `<h2>You got these questions wrong:</h2> <ol>`;
+let correctHTML = `<h2>You got these questions right:</h2>`;
+let incorrectHTML = `<h2>You got these questions wrong:</h2>`;
 
 /*
 ===========
@@ -37,7 +40,14 @@ function print(message) {
     outputDiv.innerHTML = message;
 }
 
-
+function buildList(array) {
+    let listHTML = `<ol>`;
+    for (let i = 0; i < array.length; i += 1) {
+        listHTML += `<li>${array[i]}</li>`;
+    }
+    listHTML += `</ol>`;
+    return listHTML;
+}
 
 /*
 ===========
@@ -56,17 +66,17 @@ for (let i = 0; i < quiz.length; i += 1) {
 
     if (guess === answer) {
         countCorrect += 1;
-        correctHTML += `<li>"${question}"</li>`
+        correctResponseList.push(question);
     } else {
         countIncorrect += 1;
-        incorrectHTML += `<li>"${question}"</li>`;
+        incorrectResponseList.push(question);
     }
 }
 
 HTML = `
 <p>You got ${countCorrect} question(s) right.</p>
-${correctHTML}</ol>
-${incorrectHTML}</ol>
+${correctHTML} ${buildList(correctResponseList)}
+${incorrectHTML} ${buildList(incorrectResponseList)}
 `
 
 print(HTML);
