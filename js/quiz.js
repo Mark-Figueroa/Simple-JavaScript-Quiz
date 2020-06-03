@@ -4,6 +4,8 @@ Variables
 ============
 */
 
+word()
+
 //Quiz 2d array and variables
 let quiz = [
     [prompt(`What color is the sky?`), `blue`, `What color is the sky?`, `The sky is blue.`],
@@ -66,10 +68,10 @@ for (let i = 0; i < quiz.length; i += 1) {
 
     if (guess === answer) {
         countCorrect += 1;
-        correctResponseList.push(question);
+        correctResponseList.push(`${question} ${statement}`);
     } else {
         countIncorrect += 1;
-        incorrectResponseList.push(question);
+        incorrectResponseList.push(`${question} ${statement}`);
     }
 }
 
